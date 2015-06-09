@@ -572,7 +572,7 @@ public abstract class TreeTopicSamplerHashD extends TreeTopicSampler implements 
 					tmp = wp[ii].p + "\t" + word + "\n";
 					out.append(tmp);
 				}
-			}	
+			}
 		}	
 		return out.toString();
 	}
