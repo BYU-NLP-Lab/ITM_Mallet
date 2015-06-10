@@ -141,6 +141,15 @@ public abstract class TreeTopicSampler {
 		}
 		out.close();
 	}
+	
+	/**
+	 * Prints the tokens of each document and the assigned topic to that token.
+	 * @param file
+	 * @throws IOException
+	 */
+	public void printTokenTopicAssignments(File file) throws IOException {
+		// TODO only implemented in TreeTopicSamplerHashD
+	}
 		
 	/**
 	 * This function reports the detected topics, the documents topics,
@@ -162,6 +171,9 @@ public abstract class TreeTopicSampler {
 		
 		String topicWordsFile = outputDir + ".topic-words";
 		this.printTopicWords(new File(topicWordsFile));
+		
+		String topicTokenAssignmentsFile = outputDir + ".topic-tokens";
+		this.printTokenTopicAssignments(new File(topicTokenAssignmentsFile));
 	}
 	
 	public void loadVocab(String vocabFile) {

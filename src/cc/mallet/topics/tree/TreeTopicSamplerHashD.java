@@ -411,6 +411,24 @@ public abstract class TreeTopicSamplerHashD extends TreeTopicSampler implements 
 		return val;
 	}
 	
+	@Override
+	public void printTokenTopicAssignments(File file) throws IOException {
+		PrintStream out = new PrintStream(file);
+		
+		for (int docIndex = 0; docIndex < this.data.size(); docIndex++) {
+			DocData doc = this.data.get(docIndex);
+			
+			// doc source pos typeindex type topic
+			for(int tokIndex = 0; tokIndex < doc.tokens.size(); tokIndex++) {
+				int tokenId = doc.tokens.get(tokIndex);
+				String line = docIndex + " " + doc.docName + " " + tokIndex + " " + tokenId + " " + this.vocab.get(tokenId) + " " + doc.topics.get(tokIndex)+"\n";
+				out.print(line);
+			}
+		}
+		
+		out.close();
+	}
+	
 	/**
 	 * Print the topic proportion for all documents.
 	 */
@@ -523,6 +541,7 @@ public abstract class TreeTopicSamplerHashD extends TreeTopicSampler implements 
 				try {
 					this.report(outputFolder, topWords);
 				} catch (IOException e) {
+					System.out.println("error while reporting");
 					System.out.println(e.getMessage());
 				}
 			}
